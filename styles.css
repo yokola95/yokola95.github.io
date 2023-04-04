@@ -606,7 +606,7 @@ hamburger-wrapper {
    #button-generate {
     margin-bottom: 15px;
    }
-  }
+  
 
   hamburger-wrapper {
     display: flex;
@@ -617,6 +617,31 @@ hamburger-wrapper {
 }
 #btn-about {
     display: none;
+}
+
+.img-founder {
+    height: 150px;
+    width: 150px;
+    border-radius: 8px; 
+    object-fit: cover;
+    align-self: center;
+    
+}
+
+figure {
+    margin: 5px;
+}
+stories {
+    justify-content: center;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-story{
+    width: 100%;
+  }
+
 }
 
 
@@ -660,8 +685,22 @@ hamburger-wrapper {
        #mainPageImg {
         max-height: 300px;
     }
+    figure {
+        margin: 5px;
+    }
+    stories {
+        justify-content: center;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+      }
+      .about-story{
+        width: 100%;
+      }
 
   }
+
+  
 
 
   /* MEDIUM-BIG SIZE SCREENS  */
