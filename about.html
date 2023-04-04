@@ -13,6 +13,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+<script>
+     // responsive menu for tiny screens
+     function tinyScreenDropDown() {
+            var x = document.getElementById("tinyMenu");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+</script>
+
 <body>
     <topnav>
         <logo>seekAI</logo>
@@ -22,6 +34,21 @@
          <button id="homebtn" class="navbuttons" onclick="location.href='/index.html'"><i class="fa fa-home"></i></button>
          </navbuttoncontainer>
      </topnav>
+
+    <!-- Hamburger menu for tiny screens -->
+    <hamburger-wrapper>
+        <div class="hamburger">
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="hamburger-menu" onclick="tinyScreenDropDown()">
+                <i class="fa fa-bars"></i>
+                </a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="tinyMenu">
+                <a href="./index.html">Home</a>
+                <a href="./about.html">About</a>
+            </div>
+        </div>
+    </hamburger-wrapper>
      
     <main>
         <h1>About Us</h1>
