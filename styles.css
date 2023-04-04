@@ -581,7 +581,7 @@ hamburger-wrapper {
 /* RESPONSIVE WEB */
 
 
-/* SMALL SCREENS */
+/* TINY SCREENS */
 @media screen and (max-width: 600px) {
    body {
     /* font-size: 12px; */
@@ -615,14 +615,21 @@ hamburger-wrapper {
   #homebtn {
     display: none;
 }
+#btn-about {
+    display: none;
+}
 
-/* MEDIUM SIZE SCREENS  */
+
+/* SMALL SIZE SCREENS  */
   @media screen and (min-width: 601px) and (max-width: 900px) {
     hamburger-wrapper {
         display: flex;
       }
 
     #homebtn {
+        display: none;
+    }
+    #btn-about {
         display: none;
     }
     body {
@@ -668,6 +675,10 @@ hamburger-wrapper {
       }
 
     #homebtn {
+        display: flex;
+    }
+
+    #btn-about {
         display: flex;
     }
 
