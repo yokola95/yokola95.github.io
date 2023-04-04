@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AI vs. Reality</title>
+	<title>seekAI</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -49,9 +49,9 @@
            
             //document.getElementById('none-button').style.display="flex";
             var random_idx = Math.floor(Math.random() * (132 + 1));
-            console.log('http://localhost:8000/image_art/' + random_idx.toString() + '.json')
+            console.log('image_art/' + random_idx.toString() + '.json')
             if(can_generate){
-                fetch('http://localhost:8000/image_art/' + random_idx.toString() + '.json')
+                fetch('image_art/' + random_idx.toString() + '.json')
                 .then(response => response.json())
                 .then(data => {
                     clearImages()
