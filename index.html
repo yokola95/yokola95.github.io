@@ -7,10 +7,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
         var score = 0
-        var highscore = localStorage.getItem("highscore");
-        if (highscore  || score > parseInt(highscore)) {
-            localStorage.setItem("highscore", score);
-        }
+        var highscore = 0
+        localStorage.setItem("highscore", score);
         var can_generate = true
         var in_home = true
 		function generateImage() {
