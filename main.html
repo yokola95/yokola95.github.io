@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AI vs. Reality</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+        var score = 0
+        var highscore = localStorage.getItem("highscore");
+        if (highscore  || score > parseInt(highscore)) {
+            localStorage.setItem("highscore", score);
+        }
+        var can_generate = true
+        var in_home = true
+		function generateImage() {
+            in_home = false
+            var scores = document.querySelectorAll('score-container');
+            scores.forEach(score => {
+            score.style.display = "flex";
+            });
+
+            clearImages()
+            
+            document.getElementById('highscore').textContent = highscore;
+            document.getElementById('score').textContent = score;
+
+
+            // And hide the input form
+            var heading2 = document.querySelector("#welcomeScreen");
+            heading2.style.display = "none";   
+
+            // Show the entire image container now
+            var heading = document.querySelector("#image-container");
+            heading.style.display = "flex";
+
+            // Reference the none button
+            var nonebutton = document.getElementById('none-button')
+
+            // Clear Existing images
+            clearImages()
+
+            // No button is pressed so far
+            var isPressed = false
+
+            document.getElementById('highscore').textContent = highscore.toString();
+            document.getElementById('score').textContent = score.toString();
+
+           
+            //document.getElementById('none-button').style.display="flex";
+            var random_idx = Math.floor(Math.random() * (132 + 1));
+            console.log('http://localhost:8000/image_art/' + random_idx.toString() + '.json')
+            if(can_generate){
+                fetch('http://localhost:8000/image_art/' + random_idx.toString() + '.json')
+                .then(response => response.json())
+                .then(data => {
+                    clearImages()
+                    can_generate = false
+                    console.log(data)
+                    document.getElementById('none-button').style.display="flex";
+                    // Fetch if there is a real image
+                    var is_there_real = data['is_there_real']
+
+                    // Fetch the data of the first image
+                    var first_img = document.createElement('img');
+                    first_img.src = 'data:image/png;base64,'+ data['first-image'];
+
+                    // Fetch the data of the second image
+                    var second_img = document.createElement('img');
+                    second_img.src = 'data:image/png;base64,'+ data['second-image'];
+
+                    // Make all the buttoms clickable
+                    if (is_there_real){
+                        first_img.className = 'real';
+                        addListener(first_img, 'YES! You are an AI detective',true)
+                        addListener(second_img, 'No. You clicked a generated image. Try to click the real image next time!',false)
+                        addListener(nonebutton, 'OH NO! AI tricked you!!',false)
+                    }else{
+                        first_img.className = 'fake';
+                        addListener(first_img, 'No. You clicked a generated image. Try to click a real image next time!',false)
+                        addListener(second_img, 'No. You clicked a generated image. Try to click a real image next time!',false)
+                        addListener(nonebutton, 'YES! Nothing is real and you know it',true)
+                    }
+                    second_img.className = 'fake';
+                    
+                    // Add the question
+                    document.getElementById('question').textContent = data['question'];
+                    
+                    // Show the images
+                    if(Math.random() < 0.5){
+                        document.getElementById('all-images').appendChild(first_img);
+                        document.getElementById('all-images').appendChild(second_img);
+                    }else{
+                        document.getElementById('all-images').appendChild(second_img);	
+                        document.getElementById('all-images').appendChild(first_img);
+                    }  
+
+
+
+                    function addListener(element,msg, right){
+                        element.addEventListener('click', function() {
+                            if(!isPressed){
+                                    isPressed = true;
+                                    // Update the text content of the div
+                                    document.getElementById('none-button').style.display="none";
+                                    element.AddClassName += 'clicked';
+                                    if(first_img.className == 'fake')
+                                        first_img.style.opacity = "0.1";
+                                    if(second_img.className == 'fake')
+                                        second_img.style.opacity = "0.1";
+                                    
+                                    document.getElementById('result-text').textContent = msg;
+                                    document.getElementById('result-text').style.display="flex";
+                                    document.getElementById('none-button').style.display="none";
+                                    if(right){
+                                        score = score+1
+                                        if(score > highscore){
+                                            localStorage.setItem("highscore", score);
+                                            highscore = score
+                                        }
+                                    }else{
+                                        score = 0
+                                    }
+                                    document.getElementById('highscore').textContent = highscore.toString();
+                                    document.getElementById('score').textContent = score.toString();
+                                    const progressBar = document.getElementById('countdown-progress');
+                                    document.getElementById('countdown-bar').style.display="flex";
+                                    let count = 5;
+                                    const countdownInterval = setInterval(() => {
+                                        count--;
+                                        const progress = (5 - count) * 25;
+                                        progressBar.style.width = `${progress}%`;
+                                        if(in_home){
+                                            clearInterval(countdownInterval);  
+                                            progressBar.style.width='0%'; 
+                                            return;
+                                        }
+                                        if (count === 0) {
+                                            progressBar.style.width='0%';
+                                            clearInterval(countdownInterval);
+                                            document.getElementById('countdown-bar').style.display="none";
+                                            document.getElementById('result-text').style.display="none";
+                                            can_generate=true
+                                            if(!in_home) generateImage()
+                                        }
+                                    }, 1000); 
+                                }  
+                            });
+                        }
+			    });
+            }
+        }
+
+        function clearImages(){
+                    // Now clear all of the previously created images
+                    // Get a reference to the parent element that contains the img divs        
+                     // Get a reference to the parent element that contains the img elements
+                    console.log("We are in clearImages!!");
+                    const parentElement = document.querySelector('#all-images');
+
+                    // Get all the img elements within the parent element
+                    const imgElements = parentElement.querySelectorAll('img');
+
+                    console.log(imgElements);
+
+                    // Loop through each img element and remove it from its parent node
+                    imgElements.forEach(imgElement => {
+                    imgElement.parentNode.removeChild(imgElement);
+                    });
+        }
+
+        function home() {
+                    in_home = true
+                    // Hide the entire image container now
+                    document.getElementById('countdown-bar').style.display="none";
+                    document.getElementById('result-text').style.display="none";
+                    can_generate=true
+                    var heading = document.querySelector("#image-container");
+                    heading.style.display = "none";
+
+                    var scores = document.querySelectorAll('score-container');
+                    scores.forEach(score => {
+                    score.style.display = "none";
+                    });
+                    
+                    // And show the input form
+                    var heading2 = document.querySelector("#welcomeScreen");
+                    heading2.style.display = "flex";
+                    clearImages()
+
+
+        }
+	</script>
+    <!-- Link to a stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <topnav>
+       <logo>AppName</logo>
+       <a id="btn-about" class="navbuttons" href="/about.html">About</a>
+       <navbuttoncontainer>
+        
+        <score-container id="high-score-container">
+            <p id="score-label">High Score</p>
+            <div  class="score" id="highscore">0</div>
+        </score-container>
+        <score-container id="your-score-container">
+        <p id="score-label">Score</p>
+        <div class="score" id="score">0</div>
+         </score-container>
+        
+
+        <button id="homebtn" class="navbuttons" onclick="home()"><i class="fa fa-home"></i></button>
+        </navbuttoncontainer>
+    </topnav>
+	
+    <wrapper id="welcomeScreen">
+
+    <div id="welcomeBorder">
+
+    <div class="left">
+
+        <img id="mainPageImg" src="https://media.istockphoto.com/id/1413584336/photo/astronaut-spacewalk-in-space-and-touching-orb-of-light.jpg?b=1&s=170667a&w=0&k=20&c=ougmkUUwziBqoE_bwPecLgQUs4oATwFgAxrLHfRToe0=" alt="Image description" width="500" height="300" align="right">
+
+    </div>
+
+    <div class="right">
+    
+    <div id="input-container">
+    <h1>AI vs. Reality</h1>
+    <p id="desc-text">We'll show you two images at a time. They could both be AI-generated or one could be real. <br>Can you tell the difference?</p>
+      <div id="categories-dropdown" class="dropdown" name="categories-dropdown">
+        <select>
+          <option value="">Select Category</option>
+          <option value="option1">Artist</option>
+          <option value="option2">Animal</option>
+        </select>
+      </div>
+
+      <button id="button-generate" onclick="generateImage()" class="glow-on-hover">Begin</button>
+    </div>
+    </div>
+
+</div>
+
+</wrapper>
+
+<div id="gameScreen">
+<div id="image-container">
+    <h2 id="question">Which of the following was created by Picasso?</h2>
+    <div id="all-images"></div>
+    <button class="none-button" id="none-button">Nothing is real</button>
+    
+    <div id="result-text"></div>
+    <p id="countdown">5</p>
+
+
+
+    </div>
+   </div>
+
+   <countdown>
+    <div id="countdown-bar">
+        <div id="countdown-progress"></div>
+      </div>
+    </countdown>
+
+
+
+</body>
+<!-- <footer>
+    <p>&copy; Made with ❤️ in Providence, RI. All rights reserved.</p>
+</footer> -->
+</html>
