@@ -189,6 +189,16 @@
 
 
         }
+
+        function tinyScreenDropDown() {
+            var x = document.getElementById("tinyMenu");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+}
+
 	</script>
     <!-- Link to a stylesheet -->
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -198,6 +208,8 @@
 </head>
 
 <body>
+
+  
 
     <topnav>
        <logo>seekAI</logo>
@@ -215,8 +227,24 @@
         
 
         <button id="homebtn" class="navbuttons" onclick="home()"><i class="fa fa-home"></i></button>
+
         </navbuttoncontainer>
     </topnav>
+
+    <!-- Hamburger menu for tiny screens -->
+    <hamburger-wrapper>
+        <div class="hamburger">
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="hamburger-menu" onclick="tinyScreenDropDown()">
+                <i class="fa fa-bars"></i>
+                </a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="tinyMenu">
+                <a href="./index.html">Home</a>
+                <a href="./about.html">About</a>
+            </div>
+        </div>
+    </hamburger-wrapper>
 	
     <wrapper id="welcomeScreen">
 

@@ -237,6 +237,9 @@ border-color: lightblue;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    align-items: center;
 }
 
 #image-container{
@@ -517,6 +520,64 @@ figure{
 }
 
 
+/* TINY MENU  */
+/* https://www.w3schools.com/howto/howto_js_mobile_navbar.asp */
+/* Style the navigation menu */
+hamburger-wrapper {
+    display: none;
+}
+
+.hamburger {
+    overflow: hidden;
+    background-color: #222;
+    position: relative;
+    width: fit-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align:right;
+    margin-right: 3vw;
+    margin-top: 16px;
+    
+  }
+  
+  /* Hide the links inside the navigation menu (except for logo/home) */
+#tinyMenu {
+    display: none;
+    width: 94vw;
+    background-color: #151515;
+  }
+  
+  /* Style navigation menu links */
+  .hamburger a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  /* Style the hamburger menu */
+  .hamburger a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  /* Add a grey background color on mouse-over */
+  .hamburger a:hover {
+    background-color: #5c2be2;;
+    /* color: black; */
+  }
+
+
+
+
+
+
+
 /* RESPONSIVE WEB */
 
 
@@ -547,9 +608,23 @@ figure{
    }
   }
 
+  hamburger-wrapper {
+    display: flex;
+  }
+
+  #homebtn {
+    display: none;
+}
+
 /* MEDIUM SIZE SCREENS  */
   @media screen and (min-width: 601px) and (max-width: 900px) {
+    hamburger-wrapper {
+        display: flex;
+      }
 
+    #homebtn {
+        display: none;
+    }
     body {
         /* font-size: 12px; */
        }
@@ -583,11 +658,18 @@ figure{
 
 
   /* MEDIUM-BIG SIZE SCREENS  */
-  @media screen and (min-width: 901px) and (max-width: 1024px) {
+  @media screen and (min-width: 901px) {
 
     #welcomeBorder{
         width: 85%;
     }
-  
+    hamburger-wrapper {
+        display: none;
+      }
+
+    #homebtn {
+        display: flex;
+    }
+
 
 }
