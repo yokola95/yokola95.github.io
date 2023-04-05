@@ -671,6 +671,7 @@ hamburger-wrapper {
       .real, .fake {
         width: auto;
         height: 27vh;
+        border-radius: 8px;
       }
     
       #allimages {
@@ -772,6 +773,7 @@ stories {
   .real, .fake {
     width: auto;
     height: 27vh;
+    border-radius: 8px;
   }
 
   #allimages {
@@ -856,6 +858,7 @@ stories {
       .real, .fake {
         width: auto;
         height: 27vh;
+        border-radius: 8px;
       }
 
       #allimages {
