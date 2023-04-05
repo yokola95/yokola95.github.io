@@ -1,14 +1,6 @@
-/* #button-generate {
-    background-color: #B9D9EB;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    border-radius: 12px;
-} */
+html, body {
+  overflow-x: hidden;
+}
 
 
 /* COOL BUTTON */
