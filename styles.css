@@ -413,7 +413,7 @@ topnav {
 }
 
 navbuttoncontainer {
-    right: 20px;
+    /* right: 20px; */
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -884,6 +884,11 @@ stories {
 
     #btn-about {
         display: flex;
+    }
+
+
+        navbuttoncontainer {
+            right: 20px;
     }
 
     
