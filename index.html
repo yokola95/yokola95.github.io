@@ -1,10 +1,22 @@
 <!DOCTYPE html>
+
+<!-- Google tag (gtag.js) -->
+
+
 <html>
 <head>
 	<title>seekAI</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7KWZR7C3LE"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7KWZR7C3LE');
+    </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
         var score = 0
@@ -119,6 +131,7 @@
                                     }else{
                                         score = 0
                                     }
+                                    ga('send', 'event', 'art', 'click', random_idx.toString() + right.toString() + element.toString());
                                     document.getElementById('highscore').textContent = highscore.toString();
                                     document.getElementById('score').textContent = score.toString();
                                     const progressBar = document.getElementById('countdown-progress');
