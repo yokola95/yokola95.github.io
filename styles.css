@@ -663,6 +663,7 @@ hamburger-wrapper {
       #question{
           font-size: 18px;
           padding:0px 10px;
+          margin:0px;
   
     
       }
@@ -763,6 +764,7 @@ stories {
   #question{
         font-size: 18px;
         padding:0px 10px;
+        margin:0px;
 
 
   }
@@ -847,6 +849,7 @@ stories {
       #question{
         font-size: 18px;
         padding:0px 10px;
+        margin:0px;
 
       }
 
