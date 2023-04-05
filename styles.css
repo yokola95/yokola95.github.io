@@ -690,7 +690,14 @@ hamburger-wrapper {
 
 /* TINY SCREENS */
 @media screen and (min-width: 305px) and (max-width: 600px) {
-   body {
+   #all-images{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+   }
+   
+    body {
     /* font-size: 12px; */
    }
    
