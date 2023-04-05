@@ -131,7 +131,10 @@
                                     }else{
                                         score = 0
                                     }
-                                    ga('send', 'event', 'art', 'click', random_idx.toString() + right.toString() + element.toString());
+                                    gtag('event', 'guess', {
+                                            'event_category' : 'art',
+                                            'event_label' : random_idx.toString() + right.toString()
+                                    });
                                     document.getElementById('highscore').textContent = highscore.toString();
                                     document.getElementById('score').textContent = score.toString();
                                     const progressBar = document.getElementById('countdown-progress');
