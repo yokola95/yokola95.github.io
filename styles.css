@@ -877,6 +877,13 @@ stories {
   /* MEDIUM-BIG SIZE SCREENS  */
   @media screen and (min-width: 901px) {
 
+    #all-images{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+       }
+
     #welcomeBorder{
         width: 85%;
     }
