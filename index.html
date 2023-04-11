@@ -5,10 +5,7 @@
 
 <html>
 <head>
-	<title>beatAI</title>
-    <!-- FAVICON CREDIT:
-    All credit to author -- Astronaut icons created by BZZRINCANTATION - Flaticon
-    https://www.flaticon.com/free-icon/astronaut_6989356?term=astronaut&page=1&position=1&origin=search&related_id=6989356 -->
+	<title>seekAI</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -23,8 +20,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
         var score = 0
-        var highscore = 0
-        localStorage.setItem("highscore", score);
+        var highScoreString = localStorage.getItem("highscore")
+        var highscore = JSON.parse(highScoreString) ?? 0
+        localStorage.setItem("highscore", highscore);
         var can_generate = true
         var in_home = true
 		function generateImage() {
@@ -85,14 +83,14 @@
                     // Make all the buttoms clickable
                     if (is_there_real){
                         first_img.className = 'real';
-                        addListener(first_img, 'Great job! You beat AI.',true)
-                        addListener(second_img, 'Close but not quite. That was AI-generated!',false)
-                        addListener(nonebutton, 'Uh oh, AI beat you. Try again!',false)
+                        addListener(first_img, 'YES! You are an AI detective',true)
+                        addListener(second_img, 'No. You clicked a generated image. Try to click the real image next time!',false)
+                        addListener(nonebutton, 'OH NO! AI tricked you!!',false)
                     }else{
                         first_img.className = 'fake';
-                        addListener(first_img, 'Uh oh, AI beat you. Try again!',false)
-                        addListener(second_img, 'Keep trying! That one was made by AI.',false)
-                        addListener(nonebutton, 'Congrats! Nothing is real and you know it.',true)
+                        addListener(first_img, 'No. You clicked a generated image. Try to click a real image next time!',false)
+                        addListener(second_img, 'No. You clicked a generated image. Try to click a real image next time!',false)
+                        addListener(nonebutton, 'YES! Nothing is real and you know it',true)
                     }
                     second_img.className = 'fake';
                     
@@ -136,7 +134,7 @@
                                     }
                                     gtag('event', 'guess', {
                                             'event_category' : 'art',
-                                            'event_label' : random_idx.toString() + right.toString()
+                                            'event_label' : random_idx.toString() + right.toString()                                                                                                                                        
                                     });
                                     document.getElementById('highscore').textContent = highscore.toString();
                                     document.getElementById('score').textContent = score.toString();
@@ -231,7 +229,7 @@
   
 
     <topnav>
-       <logo>beatAI</logo>
+       <logo>seekAI</logo>
        <a id="btn-about" class="navbuttons" href="./about.html">About</a>
        <navbuttoncontainer>
         
@@ -270,16 +268,16 @@
     <div id="welcomeBorder">
 
     <div class="left">
-        <!-- PHOTO CREDIT: Photo by <a href="https://unsplash.com/@alexshuperart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alex Shuper</a> on <a href="https://unsplash.com/photos/jBAcX9rZF4s?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
-        <img id="mainPageImg" src="assets/unsplash.jpg" alt="Image description" width="500" height="300" align="right">
+
+        <img id="mainPageImg" src="https://media.istockphoto.com/id/1413584336/photo/astronaut-spacewalk-in-space-and-touching-orb-of-light.jpg?b=1&s=170667a&w=0&k=20&c=ougmkUUwziBqoE_bwPecLgQUs4oATwFgAxrLHfRToe0=" alt="Image description" width="500" height="300" align="right">
 
     </div>
 
     <div class="right">
     
     <div id="input-container">
-    <h1>Art or AI?</h1>
-    <p id="desc-text">AI is taking over the world, one fake image at a time! BeatAI trains you to recognize real art from artificial. Can you tell the difference between what's true and what's AI-generated?</p>
+    <h1>AI vs. Reality</h1>
+    <p id="desc-text">We'll show you two images at a time. They could both be AI-generated or one could be real. <br>Can you tell the difference?</p>
     <!-- category button   -->
     <!-- <div id="categories-dropdown" class="dropdown" name="categories-dropdown">
         <select>
