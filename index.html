@@ -85,14 +85,14 @@
                     // Make all the buttoms clickable
                     if (is_there_real){
                         first_img.className = 'real';
-                        addListener(first_img, 'YES! You are an AI detective',true)
-                        addListener(second_img, 'No. You clicked a generated image. Try to click the real image next time!',false)
-                        addListener(nonebutton, 'OH NO! AI tricked you!!',false)
+                        addListener(first_img, 'Great job! You beat AI.',true)
+                        addListener(second_img, 'Close but not quite. That was AI-generated!',false)
+                        addListener(nonebutton, 'Uh oh, AI beat you. Try again!',false)
                     }else{
                         first_img.className = 'fake';
-                        addListener(first_img, 'No. You clicked a generated image. Try to click a real image next time!',false)
-                        addListener(second_img, 'No. You clicked a generated image. Try to click a real image next time!',false)
-                        addListener(nonebutton, 'YES! Nothing is real and you know it',true)
+                        addListener(first_img, 'Uh oh, AI beat you. Try again!',false)
+                        addListener(second_img, 'Keep trying! That one was made by AI.',false)
+                        addListener(nonebutton, 'Congrats! Nothing is real and you know it.',true)
                     }
                     second_img.className = 'fake';
                     
