@@ -410,6 +410,8 @@ navbuttoncontainer {
     /* position: absolute; */
     display: flex;
     flex-direction: row;
+    
+    
 }
 
 logo{
@@ -839,13 +841,20 @@ stories {
       }
 
       navbuttoncontainer {
-        text-align: end;
+        text-align: center;
         align-self: center;
-        width: 100vw;
+        /* width: 100vw; */
         align-items: center;
         justify-content: center;
         display:flex;
-        padding-right: 20px;
+        /* padding-right: 20px; */
+        width: 100%;
+        position: absolute;
+        right: 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+       
       }
 
       #question{
@@ -888,7 +897,9 @@ stories {
       }
 
     #homebtn {
-        display: flex;
+      display: flex;
+      position: absolute;
+      right: 20px;
         
     }
 
@@ -898,7 +909,13 @@ stories {
 
 
         navbuttoncontainer {
-            right: 20px;
+          width: 100%;
+    position: absolute;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+   
     }
 
     
