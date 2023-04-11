@@ -251,6 +251,7 @@ border-color: lightblue;
     padding-top: 20px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 body,html {
@@ -671,7 +672,7 @@ hamburger-wrapper {
     
       .real, .fake {
         width: auto;
-        height: 27vh;
+        height: 26vh;
         border-radius: 8px;
       }
     
@@ -775,7 +776,7 @@ stories {
 
   .real, .fake {
     width: auto;
-    height: 27vh;
+    height: 26vh;
     border-radius: 8px;
   }
   
@@ -856,7 +857,7 @@ stories {
 
       .real, .fake {
         width: auto;
-        height: 27vh;
+        height: 26vh;
         border-radius: 8px;
       }
 
