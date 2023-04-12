@@ -384,6 +384,7 @@ score-container{
     padding-left: 20px;
     font-weight: bold;
     color: white;
+    z-index:999999 !important;
 }
 
 #btn-about:hover{
