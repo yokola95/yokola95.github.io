@@ -423,6 +423,11 @@ logo{
     z-index: 100;
 }
 
+#logo-txt {
+  text-decoration: none;
+  color:white;
+}
+
   /* THIS IS ALL FOR THE ABOUT PAGE */
 
   main {
