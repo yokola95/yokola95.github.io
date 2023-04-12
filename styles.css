@@ -420,6 +420,7 @@ logo{
     border: solid white 2px;
     padding: 6px;
     margin-left: 20px;
+    z-index: 100;
 }
 
   /* THIS IS ALL FOR THE ABOUT PAGE */
