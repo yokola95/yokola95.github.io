@@ -701,6 +701,10 @@ hamburger-wrapper {
     justify-content: center;
 
    }
+
+   logo {
+    margin-top: 2px;
+   }
    
     body {
     /* font-size: 12px; */
@@ -797,6 +801,10 @@ stories {
     hamburger-wrapper {
         display: flex;
       }
+
+      logo {
+        margin-top: 2px;
+       }
 
     #homebtn {
         display: none;
