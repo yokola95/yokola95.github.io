@@ -22,18 +22,22 @@
     </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
-        var user_ID = JSON.parse(localStorage.getItem("user_id"));
-        if(user_ID == null){
-            user_ID = Math.random().toString(16).slice(2)
-            localStorage.setItem("user_id",user_ID)
+        console.log("HERE")
+        var user_ID = localStorage.getItem("userid");
+        if(user_ID == undefined){
+            user_ID = Math.random().toString(16).slice(2);
+            localStorage.setItem("userid",user_ID.toString());
         }
         var score = 0
-        var highScoreString = localStorage.getItem("highscore")
-         var highscore = JSON.parse(highScoreString) ?? 0
-         localStorage.setItem("highscore", highscore);
+        var highscore = localStorage.getItem("highscore");
+        if(highscore == undefined){
+            highscore = 0;
+            localStorage.setItem("highscore", highscore);
+        }
 
-        var can_generate = true
-        var in_home = true
+
+        var can_generate = true;
+        var in_home = true;
 		function generateImage() {
             in_home = false
             var scores = document.querySelectorAll('score-container');
@@ -42,9 +46,11 @@
             });
 
             clearImages()
-            
-            document.getElementById('highscore').textContent = highscore;
-            document.getElementById('score').textContent = score;
+            console.log("user_ID")
+            console.log(user_ID)
+
+            console.log("highscore")
+            console.log(highscore)
 
 
             // And hide the input form
